@@ -1,6 +1,6 @@
 import React from 'react';
 import Marquee from 'react-fast-marquee';
-import img2 from "../../assets/pages/landing/alumni/kshitiz.jpg";
+import img2 from "../../assets/pages/landing/alumni/ramjan.jpg";
 import './alumni-marquee.css';
 import {Stack} from "@mui/material";
 

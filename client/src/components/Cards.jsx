@@ -8,39 +8,7 @@ import Applicants from "../assets/Components/Cards/Applicants.svg";
 import Bgnewscard1 from "../assets/Components/Cards/Bgnewscard1.svg";
 import {toast} from "react-toastify";
 const _ = require('lodash');
-//const ProjectCard = (props) => {
-//  return (
-//    <div className="flex justify-center">
-//      <section
-//        className="flex flex-col text-wrap my-2 p-4 rounded-lg shadow-md bg-white-100 w-11/12
-//      md:grid md:grid-cols-3 md:grid-rows-5 md:w-7/12"
-//      >
-//        <div className="md:grid md:col-span-1 md:row-span-5 md:gap-1">
-//          <i className="text-xs font-semibold text-yellow-400">
-//            {props.developmentGenre}
-//          </i>
-//          <p className=" text-md font-bold text-black-800">
-//            {props.projectTitle}
-//          </p>
-//          <p className="text-gray-700">By: {props.handlerName}</p>
-//          <p className="text-gray-700">{props.techStack}</p>
-//          <div className=" flex m-1">
-//            <img src={Applicants} alt="applicants" className="w-4 h-4 m-1" />
-//            {props.applicants}
-//          </div>
-//        </div>
-//        <p className="md:grid md:col-span-2 md:row-span-1"></p>
-//        <p className="md:grid md:col-span-2 md:row-span-5">
-//          {props.description}
-//        </p>
-//        <div className=" flex justify-center mt-2 md:flex md:col-span-3 md:justify-end">
-//          <PrimaryButton name="APPLY" />
-//          <BorderButton name="Handler Profile" />
-//        </div>
-//      </section>
-//    </div>
-//  );
-//};
+
 
 const JobsCard = (props) => {
   const rank=props.rank;
@@ -141,7 +109,7 @@ const JobsCard = (props) => {
           </div>
 
           <div className="flex justify-evenly">
-            {rank==0||rank==1||rank==2? <PrimaryButton onClick={() => toast.error('Login from iiitdwd account to apply')} name="Apply" isDisabled={false} /> : <PrimaryButton name="Apply" isDisabled={true} /> }
+            {rank==0||rank==1||rank==2? <PrimaryButton onClick={() => toast.error('Failed to apply')} name="Apply" isDisabled={false} /> : <PrimaryButton name="Apply" isDisabled={true} /> }
             <div className="hidden md:block">
               <BorderButton name="Request for Referal" />
             </div>

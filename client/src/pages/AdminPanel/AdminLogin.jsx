@@ -102,7 +102,7 @@ const AdminLogin = () => {
       spacing={2}
     >
       <img
-        src={"/logo.png"}
+        src={"/logo1.png"}
         className={`overflow-hidden transition-all w-36`}
         alt="AlmaMater"
       />

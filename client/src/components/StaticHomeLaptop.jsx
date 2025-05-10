@@ -92,15 +92,7 @@ const StaticHome = ()=>
         </Grid>
 
 
-        {/*<div className="flex">*/}
-        {/*    <img src={NetworkHome} alt='network' width="600" height="400" />*/}
-        {/*    <div className='flex flex-col justify-around'>*/}
-        {/*        <TextGeneration words={'Intuitive Networking Platform Bridging Students and Alumni'} />*/}
-        {/*        <SmallTextGeneration words={'Outstanding features which help in increasing '} />*/}
-        {/*        <SmallPinkTextGeneration words={'opportunities, collaboration, and innovation'} />*/}
-        {/*        <SmallTextGeneration words={'of ideas'} />*/}
-        {/*    </div>*/}
-        {/*</div>*/}
+       
 
         <div className='flex justify-evenly'>
             <div className='flex flex-col bg-gradient-to-r from-[#FA003C]/20 p-3 rounded-sm' ref={ref}>
@@ -123,15 +115,7 @@ const StaticHome = ()=>
             </div>
         </div>
 
-        {/*<div className='flex flex-col justify-around gap-10 py-10 my-6 bg-gradient-to-r from-grad1/30 via-grad2/15 to-grad1/30'>*/}
-        {/*    <h1 className='text-center text-3xl  font-semibold'>FTO and Internships bagged by our Alumni</h1>*/}
-        {/*    <div className='flex flex-row justify-evenly flex-wrap gap-5'>*/}
-        {/*        <img src={Nvidia} alt='companylogo' width="200" height="50" />*/}
-        {/*        <img src={Intel} alt='companylogo' width="200" height="50" />*/}
-        {/*        <img src={Amazon} alt='companylogo' width="200" height="50" />*/}
-        {/*        <img src={Ibm} alt='companylogo' width="200" height="50" />*/}
-        {/*    </div>*/}
-        {/*</div>*/}
+       
         <CompanyMarquee />
 
 
@@ -175,7 +159,7 @@ const StaticHome = ()=>
           <img src="https://res.cloudinary.com/dacddersz/image/upload/v1732649658/Alumni-platform/Screenshot_2024-11-27_010243_xobfge.png" width="50%" alt="" />
             <div className='flex flex-col justify-evenly'>
                 <div>
-                    <p className='text-5xl font-semibold text-wrap' style={{ lineHeight: '1.5' }}>Stay Connected: Students Stay Abreast of Information with the Latest Updates on </p>
+                    <p className='text-5xl font-semibold text-wrap' style={{ lineHeight: '1.5' }}>Stay in the Loop: Students Stay Updated with Important Information on  </p>
                     <p className='text-5xl font-semibold bg-gradient-to-r mt-2 from-[#FA003C]/20 p-3 inline-block rounded-sm' style={{ lineHeight: '1.5' }}>
                     <TypeAnimation
   sequence={[

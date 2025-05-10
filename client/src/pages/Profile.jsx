@@ -6,7 +6,7 @@ import Notification from "../components/Notification";
 import Footer from "../template/Footer";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {useRecoilValue, useSetRecoilState} from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { userAtom } from "../store/atoms/User";
 import {
   Dialog,
@@ -20,9 +20,7 @@ import {
 } from "@mui/material";
 import { Close, NotificationsNone } from "@mui/icons-material";
 import { fetcherPost, fetcherPut } from "../utils/axiosAPI";
-import {useLocation, useNavigate} from "react-router-dom";
-import { px } from "framer-motion";
-
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [data, setData] = useState(null);
@@ -31,10 +29,22 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [editData, setEditData] = useState(null);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const setUser = useSetRecoilState(userAtom);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [preview, setPreview] = useState(null);
 
-
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setSelectedFile(file);
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => setPreview(reader.result);
+      reader.readAsDataURL(file);
+    } else {
+      setPreview(null);
+    }
+  };
 
   const getUserProfileData = async (userID) => {
     setLoading(true);
@@ -44,8 +54,6 @@ const Profile = () => {
       const response = await fetcherPost(url, { body });
       setData(response);
 
-      console.log(response);
-
       setEditData({
         position: response?.position || "",
         branch: response?.branch || "",
@@ -53,6 +61,7 @@ const Profile = () => {
         companyName: response?.companyName || "",
         email: response?.email || "",
         name: response?.name || "",
+        profileImage: response?.profilePicURL || "",
         userID: user?.basic?.id,
       });
     } catch (error) {
@@ -62,8 +71,7 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    //console.log("User: ", user);
-      if (user?.basic?.id) getUserProfileData(user.basic.id);
+    if (user?.basic?.id) getUserProfileData(user.basic.id);
   }, [user]);
 
   const handleDetailChange = (title, value) => {
@@ -76,23 +84,40 @@ const Profile = () => {
 
   const handleEditFormClose = () => {
     setEditOpen(false);
+    setSelectedFile(null);
+    setPreview(null);
   };
 
   const handleSaveClick = async () => {
     setSubmitting(true);
     try {
-      const url = "/user/edit";
-      const body = {
-        ...editData,
-      };
-      console.log(body);
-      const res = await fetcherPut(url, {
-        token: localStorage.getItem("token"),
-        body,
+      const formData = new FormData();
+      formData.append("name", editData.name);
+      formData.append("position", editData.position);
+      formData.append("companyName", editData.companyName);
+      formData.append("email", editData.email);
+      formData.append("batch", editData.batch);
+      formData.append("branch", editData.branch);
+      formData.append("userID", editData.userID);
+      if (selectedFile) {
+        formData.append("profileImage", selectedFile);
+      }
+
+      const token = localStorage.getItem("token");
+
+      const result = await fetcherPut("/user/edit", {
+        body: formData,
+        token,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
-      if (res?.UpdatedUser) {
+
+      // const result = await res.json();
+
+      if (result?.UpdatedUser) {
         toast.success("Profile Updated Successfully");
-        setData(res.UpdatedUser);
+        setData(result.UpdatedUser);
         handleEditFormClose();
       }
     } catch (error) {
@@ -101,42 +126,45 @@ const Profile = () => {
     setSubmitting(false);
   };
 
-  const handleLogout =() =>{
+
+  
+
+  const handleLogout = () => {
     setUser({
       basic: {
-        name: '',
-        email: '',
+        name: "",
+        email: "",
         rank: -1,
-        isLoggedIn: false
+        isLoggedIn: false,
       },
-      profilePic: '',
+      profilePic: "",
       socials: {
-        githubUrl: '',
-        linkedInUrl: '',
-        xUrl: ''
+        githubUrl: "",
+        linkedInUrl: "",
+        xUrl: "",
       },
-      notifications:[],
+      notifications: [],
       address: {
-        city: '',
-        state: ''
+        city: "",
+        state: "",
       },
       activity: {
         projectsFloated: 0,
         jobsFloated: 0,
-        internshipsFloated: 0
+        internshipsFloated: 0,
       },
       collegeDetails: {
-        branch: '',
-        batch: ''
+        branch: "",
+        batch: "",
       },
       jobRelated: {
-        company: '',
-        jobTitle: '',
-      }
-    })
+        company: "",
+        jobTitle: "",
+      },
+    });
     localStorage.clear();
-    navigate('/');
-  }
+    navigate("/");
+  };
 
   return (
     <>
@@ -150,19 +178,25 @@ const Profile = () => {
           <div className="relative">
             <div className="overflow-auto md:overflow-hidden h-auto md:h-[250px] lg:h-[350px] 2xl:h-[450px]">
               <img
-                src="/IIITDWD.svg"
+                src="/pvpit4.jpg"
                 alt="cover-img"
-                className="w-full object-cover relative top-0 md:-top-[6em] -z-[1]"
+                
+                className="w-full object-cover relative h-[600px] top-0 md:-top-[6em] -z-[1]"
               />
             </div>
-            <Stack spacing={1}
-                   direction={'row'}>
-              <div className="absolute bottom-0 right-28"
-                   onClick={handleEditFormOpen}>
+            <Stack spacing={1} direction={"row"}>
+              <div
+                className="absolute bottom-0 right-28"
+                onClick={handleEditFormOpen}
+              >
                 <BorderButton name={"Edit Profile"} />
               </div>
               <div className="absolute bottom-2 right-2">
-                <Button color={'secondary'} variant={'contained'} onClick={handleLogout}>
+                <Button
+                  color={"secondary"}
+                  variant={"contained"}
+                  onClick={handleLogout}
+                >
                   LogOut
                 </Button>
               </div>
@@ -193,13 +227,23 @@ const Profile = () => {
                     }
                     target="blank"
                   >
-                    <img src="/github.svg" alt="github-icon" width="35px" height="35px"/>
+                    <img
+                      src="/github.svg"
+                      alt="github-icon"
+                      width="35px"
+                      height="35px"
+                    />
                   </a>
                   <a
                     href={data?.xURL ? data.xURL : "https://x.com/"}
                     target="blank"
                   >
-                    <img src="/twittor.svg" alt="X-icon" width="35px" height="35px"/>
+                    <img
+                      src="/twittor.svg"
+                      alt="X-icon"
+                      width="35px"
+                      height="35px"
+                    />
                   </a>
                   <a
                     href={
@@ -209,7 +253,12 @@ const Profile = () => {
                     }
                     target="blank"
                   >
-                    <img src="/linkedin.svg" alt="linkedin-icon" width="35px" height="35px"/>
+                    <img
+                      src="/linkedin.svg"
+                      alt="linkedin-icon"
+                      width="35px"
+                      height="35px"
+                    />
                   </a>
                 </div>
               </div>
@@ -262,6 +311,9 @@ const Profile = () => {
                       key={item._id}
                       type={item.type}
                       text={item.name}
+                      stdId={item.userID}
+                      id={item.objID}
+                      getUserProfileData={getUserProfileData}
                     />
                   ))}
                 </div>
@@ -339,6 +391,25 @@ const Profile = () => {
                 label="Branch"
                 value={editData?.branch}
                 onChange={(e) => handleDetailChange("branch", e.target.value)}
+              />
+              {preview && (
+                <img
+                  src={preview}
+                  alt="Preview"
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    objectFit: "cover",
+                    borderRadius: "50%",
+                    marginBottom: "10px",
+                  }}
+                />
+              )}
+              <input
+                type="file"
+                name="profileImage"
+                accept="image/*"
+                onChange={handleFileChange}
               />
               <Button
                 fullWidth

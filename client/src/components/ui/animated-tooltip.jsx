@@ -1,4 +1,4 @@
-import Image from "../../assets/pages/teams/kshitiz.jpg";
+import Image from "../../assets/pages/teams/ramjan.jpg";
 import React, { useState } from "react";
 import { motion, useTransform, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 

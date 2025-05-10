@@ -14,14 +14,14 @@ export default function Sidebar({ children, user }) {
                 <nav className="h-full flex flex-col bg-white border-r shadow-sm">
                     <div className="p-4 pb-2 flex justify-between items-center">
                         <div></div>
-                        <img src={"/logo.png"} className={`overflow-hidden transition-all ${expanded ? "w-32" : "w-0"}`}  alt="AlmaMater" />
+                        <img src={"/logo1.png"} className={`overflow-hidden transition-all ${expanded ? "w-32" : "w-0"}`}  alt="AlmaMater" />
                         {expanded ? (
                             <IconButton onClick={() => setExpanded(false)}>
                                 <ArrowBackIosNew />
                             </IconButton>
                         ) : (
                             <button onClick={() => setExpanded(true)} className="rounded-lg hover:bg-gray-100">
-                                <img src={"/logo.png"} alt = "logo" width="50" height="50"/>
+                                <img src={"/logo1.png"} alt = "logo" width="50" height="50"/>
                             </button>
                         )}
                     </div>

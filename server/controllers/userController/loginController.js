@@ -23,7 +23,7 @@ const login = async (req, res) => {
         }
         else {
             try {
-                const token = jwt.sign({ email: email, rank: rank, userID: user.userID }, process.env.jwtPassword, {
+                const token = jwt.sign({ email: email,name : user.name , rank: rank, userID: user.userID }, process.env.jwtPassword, {
                   expiresIn: "4d"
                 });
                 return res.status(201).json({ status: true, msg: "Logged In Successfully", token, userID: user.userID }); // 201 Created with token

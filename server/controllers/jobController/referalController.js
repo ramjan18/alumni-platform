@@ -6,19 +6,10 @@ const createRequest = async (req,res) =>{
   const { jobID, floatedByID, title, company } = req.body;
   const appliedBy = req.user.userID;
 
-//  console.log('jobId:', jobID);
-//  console.log('floatedByID:', floatedByID);
-//  console.log('title:', title);
-//  console.log('appliedBy:', appliedBy);
-//  console.log('req.user: ', req.user);
+
 
   try {
-    // Check if the job exists
-
-//    const job = await jobModel.findOne({ jobID: jobID });
-//    if (!job) {
-//      return res.status(404).json({ msg: "Job Not Found" });
-//    }
+   
 
     // Check if the floatedBy user exists
     const floatedByUser = await userModel.findOne({ userID: floatedByID });
@@ -35,10 +26,11 @@ const createRequest = async (req,res) =>{
       return res.status(400).json({ msg: "Referral request already pending for this job." });
     }
 
+    console.log( "request by : " , req.user.name);
     // Create a new notification
     const newNotification = {
       type: "Referral Request",
-      name: "Referral request by " + req.user.email + " for " + title + " in " + company, // Name of the user making the request
+      name: "Referral request by " + req.user.name + " for " + title + " in " + company, // Name of the user making the request
       userID: appliedBy, // ID of the user making the request
       objID: jobID, // Job ID
     };

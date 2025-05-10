@@ -1,4 +1,4 @@
-import logo from '../assets/logo.png';
+import logo from '../assets/logo1.png';
 import React from 'react';
 import './Footer.css'
 import { Link } from "react-router-dom";
@@ -45,7 +45,7 @@ const Footer = () => {
                         <Link className="flex place-items-center gap-2 text-md font-poppins" to="/">
                             <div className="">
                                 <div className="">
-                                    {/* <img src={logo} alt="" width="40" height="40" /> */}
+                                    <img src={logo} alt="" width="40" height="40" />
                                 </div>
                             </div>
                             AlumniLink

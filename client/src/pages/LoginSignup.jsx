@@ -118,7 +118,7 @@ const LoginSignup = ({
             const token= response.token;
 
             localStorage.setItem('token', token);
-
+            localStorage.setItem("id",userId);
             const body={
               userID: userId
             }

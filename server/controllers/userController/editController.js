@@ -2,10 +2,12 @@ const bcrypt = require('bcrypt');
 const userModel = require("../../models/userSchema");
 
 const edit = async (req, res) => {
-  const { userID, name, email, branch, batch, password, profilePicURL, githubURL, xURL, linkedinURL, jobLocation, companyName, position, floatedProjects, floatedJobs, offeredReferrals, notifications, verificationStatus } = req.body;
+  const { userID, name, email, branch, batch, password, githubURL, xURL, linkedinURL, jobLocation, companyName, position, floatedProjects, floatedJobs, offeredReferrals, notifications, verificationStatus } = req.body;
     // const token = req.headers.authorization;
     // console.log(token);
+    const profilePicURL = req?.file?.path;
   try {
+    console.log("userId : ",userID);
     const user = await userModel.findOne({ userID });
     if (!user) {
       return res.status(401).json({ msg: "User Not Found" });
@@ -15,7 +17,7 @@ const edit = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      profilePicURL,
+      profilePicURL:profilePicURL,
       branch,
       batch,
       githubURL,

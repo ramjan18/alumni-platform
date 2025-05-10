@@ -54,7 +54,7 @@ const AlumniListing = () => {
   const [filters, setFilters] = useState({
     //All: true,
     CSE: false,
-    DSAI: false,
+    AIDS: false,
     ECE: false,
     year2022: false,
     year2023: false,
@@ -94,16 +94,15 @@ const AlumniListing = () => {
 
   const filterBranches = (user) => {
     if (filters.CSE) {
-      if (filters.DSAI && filters.ECE) return true;
-      if (filters.DSAI && user.branch.toLowerCase() === "dsai") return true;
+      if (filters.AIDS && filters.ECE) return true;
+      if (filters.AIDS && user.branch.toLowerCase() === "aids") return true;
       if (filters.ECE && user.branch.toLowerCase() === "ece") return true;
       return user.branch.toLowerCase() === "cse"
     }
-    else if (filters.DSAI) {
+    else if (filters.AIDS) {
       if (filters.ECE && user.branch.toLowerCase() === "ece") return true;
-      return user.branch.toLowerCase() === "dsai"
-    }
-    else if (filters.ECE) return user.branch.toLowerCase() === "ece"
+      return user.branch.toLowerCase() === "aids";
+    } else if (filters.ECE) return user.branch.toLowerCase() === "ece";
     return true;
   };
 
@@ -246,8 +245,8 @@ const AlumniListing = () => {
                       <div onClick={() => handleFilterClick("CSE")}>
                         <JobsFilterButton name="CSE" used={filters.CSE} />
                       </div>
-                      <div onClick={() => handleFilterClick("DSAI")}>
-                        <JobsFilterButton name="DSAI" used={filters.DSAI} />
+                      <div onClick={() => handleFilterClick("AIDS")}>
+                        <JobsFilterButton name="AIDS" used={filters.AIDS} />
                       </div>
                       <div onClick={() => handleFilterClick("ECE")}>
                         <JobsFilterButton name="ECE" used={filters.ECE} />
@@ -328,16 +327,32 @@ const AlumniListing = () => {
 
               <Grid item container xs={8} spacing={4} direction={"column"}>
                 {isLoading ? (
-                  <Box style={{display: 'flex', width: '100%', height: 100, justifyContent: 'center', alignItems: 'center'}}>
-                  <p className=" text-primaryPink font-bold font-poppins text-xl px-6 py-4">
-                    Loading...
-                  </p>
+                  <Box
+                    style={{
+                      display: "flex",
+                      width: "100%",
+                      height: 100,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <p className=" text-primaryPink font-bold font-poppins text-xl px-6 py-4">
+                      Loading...
+                    </p>
                   </Box>
                 ) : currentPageData?.length === 0 ? (
-                  <Box style={{display: 'flex', width: '100%', height: 100, justifyContent: 'center', alignItems: 'center'}}>
-                  <p className=" text-primaryPink font-bold font-poppins text-xl px-6 py-4">
-                    No results found
-                  </p>
+                  <Box
+                    style={{
+                      display: "flex",
+                      width: "100%",
+                      height: 100,
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <p className=" text-primaryPink font-bold font-poppins text-xl px-6 py-4">
+                      No results found
+                    </p>
                   </Box>
                 ) : (
                   <>
@@ -384,7 +399,7 @@ const AlumniListing = () => {
                 )}
               </Grid>
             </Grid>
-           )} 
+          )}
         </div>
         <div
           className={`${

@@ -7,7 +7,9 @@ const { remove } = require('../controllers/jobController/deleteController');
 const { edit } = require('../controllers/jobController/editController');
 const { createRequest } = require('../controllers/jobController/referalController');
 const {getRank} = require('../middlewares/getRank');
+const {handleReferralRequest} = require("../controllers/jobController/offerredRefferalController");
 
+router.post("/handleRefferral", handleReferralRequest);
 router.post("/create", create); // Job Creation
 router.get("/get", jwtAuth, get); // Get Job By ID
 router.get("/getAll", getRank, getAll); // Get All Jobs

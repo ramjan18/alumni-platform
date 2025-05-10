@@ -3,8 +3,8 @@ import Footer from "../template/Footer";
 import TeamCard from "../components/Cards/TeamCard";
 import Image1 from "../assets/pages/teams/ramjan.jpg";
 import Image2 from "../assets/pages/teams/ramjan.jpg";
-import Image3 from "../assets/pages/teams/ramjan.jpg";
-import Image4 from "../assets/pages/teams/ramjan.jpg";
+import Image3 from "../assets/pages/teams/kabir.jpg";
+import Image4 from "../assets/pages/teams/jaid.jpg";
 
 
 // import TeamTooltip from '../components/animations/TeamTooltip';
@@ -89,19 +89,7 @@ const AboutUs = () => {
             <AboutUsCard image={Image4} name={'Jaid Sutar'} title={'Frontend Dev'} link1={'https://in.linkedin.com/'} link2={'https://www.instagram.com/'} link3={'https://twitter.com/'} />
                 </Grid>
 
-            {/* <Grid item xs={12} sx={{display: 'flex', justifyContent: 'center', width: '100%', marginBottom: '1rem', marginTop: '2rem'}}>
-              <Typography variant={'h5'}  color={'secondary'}>Content And Reachout Team</Typography>
-            </Grid>
-
-            <Grid item container xs={12} sx={{display: 'flex', justifyContent: 'center', width: '100%'}}>
-
-            <Grid item xs={12} sm={6} md={3}>
-              <AboutUsCard image={Image5} name={'Divyansh Mishra'} title={'Non Tech'} link1={'https://www.linkedin.com/in/divyansh-mishra-203664241/'} link2={'https://www.instagram.com/divyanshmishra9364/'} link3={'https://x.com/DIVYANS61141188'} />
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <AboutUsCard image={Image6} name={'Bharghav Abhilash'} title={'Non Tech'} link1={'https://www.linkedin.com/in/barghav-abhilash-b-r-2ab2ba29a/'} link2={'https://www.instagram.com/abhilash_2557/'} link3={'https://x.com/GFless_Kurrodu'} />
-            </Grid>
-            </Grid> */}
+           
 
           </Grid>
         </Grid>
