@@ -49,7 +49,7 @@ const generateAndSendOtp = async (email) =>{
       html: `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #f9f9f9;">
       <div style="text-align: center; margin-bottom: 20px;">
-        //  <img src="${logo}" alt="Alumni Link" style="width: 150px;" />
+        
       </div>
 
       <h2 style="color: #333;">Dear User,</h2>
